@@ -28,5 +28,18 @@
             android:entryValues="@array/torch_power_button_gesture_values" />
 
     </PreferenceCategory>
-    
+
+    <PreferenceCategory
+        android:key="volume_category"
+        android:title="@string/volume_category">
+
+        <com.lessaosp.settings.preference.SystemSettingSwitchPreference
+            android:key="volume_rocker_wake"
+            android:summary="@string/volume_rocker_wake_summary"
+            android:title="@string/volume_rocker_wake_title"
+            android:defaultValue="false"
+            android:disableDependentsState="true" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
