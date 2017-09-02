@@ -25,5 +25,11 @@
                 android:targetPackage="com.android.phone"
                 android:targetClass="com.android.phone.settings.RadioInfo" />
     </Preference>
+        
+        <Preference
+            android:key="alarm_blocker"
+            android:title="@string/alarm_blocker"
+            android:summary="@string/alarm_blocker_summary"
+            android:fragment="com.lessaosp.settings.fragments.AlarmBlocker" />
 
 </PreferenceScreen>
