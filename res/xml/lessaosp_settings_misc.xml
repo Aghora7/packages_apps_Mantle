@@ -32,4 +32,10 @@
             android:summary="@string/alarm_blocker_summary"
             android:fragment="com.lessaosp.settings.fragments.AlarmBlocker" />
 
+        <Preference
+            android:key="wakelock_blocker"
+            android:title="@string/wakelock_blocker_title"
+            android:summary="@string/wakelock_blocker_summary"
+            android:fragment="com.lessaosp.settings.fragments.WakeLockBlocker" />
+
 </PreferenceScreen>
