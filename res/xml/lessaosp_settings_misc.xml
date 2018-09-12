@@ -34,6 +34,12 @@
              android:summary="@string/volte_icon_summary"
              android:defaultValue="true"/>
 
+        <com.lessaosp.settings.preference.SystemSettingSwitchPreference
+            android:key="toast_icon"
+            android:title="@string/toast_icon_title"
+            android:summary="@string/toast_icon_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <Preference
