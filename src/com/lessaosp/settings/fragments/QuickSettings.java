@@ -40,6 +40,8 @@ import android.view.View;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.lessaosp.settings.display.QsTileStylePreferenceController;
+
 public class QuickSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
@@ -64,6 +66,13 @@ public class QuickSettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.LESS_SETTINGS;
+    }
+
+    private static List<AbstractPreferenceController> buildPreferenceControllers(
+            Context context, Lifecycle lifecycle, Fragment fragment) {
+        final List<AbstractPreferenceController> controllers = new ArrayList<>();
+        controllers.add(new QsTileStylePreferenceController(context));
+        return controllers;
     }
 
 }
