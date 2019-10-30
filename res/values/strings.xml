@@ -120,4 +120,8 @@
     <string name="show_qs_call_strength_icon_title">Show call strength icon(s)</string>
     <string name="show_qs_call_strength_icon_summary">Show call strength icons in QuickSettings panel when available</string>
 
+    <!-- Brightness control -->
+    <string name="status_bar_toggle_brightness">Brightness control</string>
+    <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across the status bar</string>
+    
 </resources>
