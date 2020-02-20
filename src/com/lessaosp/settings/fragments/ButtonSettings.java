@@ -52,6 +52,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
+    private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
     private static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
 
     private ListPreference mTorchPowerButton;
@@ -84,6 +85,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 Settings.System.FORCE_SHOW_NAVBAR,
                 defaultToNavigationBar ? 1 : 0) == 1));
         mNavigationBar.setOnPreferenceChangeListener(this);
+
+        Preference mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
     }
 
     @Override
