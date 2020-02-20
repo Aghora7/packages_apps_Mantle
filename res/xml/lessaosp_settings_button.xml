@@ -53,4 +53,14 @@
             android:summary="@string/swap_volume_buttons_summary"
             android:defaultValue="false" />
     </PreferenceCategory>
+    <PreferenceCategory
+        android:key="navigation_keys"
+        android:title="@string/navigation_title">
+
+        <SwitchPreference
+            android:key="force_show_navbar"
+            android:title="@string/navigation_bar_title"
+            android:summary="@string/navigation_bar_summary" />
+    </PreferenceCategory>
+    
 </PreferenceScreen>
