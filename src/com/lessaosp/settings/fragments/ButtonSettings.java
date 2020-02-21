@@ -67,6 +67,10 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mNavigationBar;
     private SystemSettingSwitchPreference mNavigationArrows;
 
+    private boolean mIsNavSwitchingMode = false;
+
+    private Handler mHandler;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -99,6 +103,9 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
 
         mNavigationArrows = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
+
+        mHandler = new Handler();
+
     }
 
     @Override
@@ -113,8 +120,18 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                     mTorchPowerButtonValue);
         } else if (preference == mNavigationBar) {
             boolean value = (Boolean) newValue;
+            if (mIsNavSwitchingMode) {
+                return false;
+            }
+            mIsNavSwitchingMode = true;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.FORCE_SHOW_NAVBAR, value ? 1 : 0);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mIsNavSwitchingMode = false;
+                }
+            }, 1500);
             return true;
         }
         return false;
