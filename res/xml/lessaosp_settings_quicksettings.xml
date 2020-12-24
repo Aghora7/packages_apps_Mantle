@@ -61,4 +61,17 @@
             android:summary="@string/qs_bg_use_new_tint_summary"
             android:defaultValue="true" />
 
+    <!-- Gvisual mod -->
+    <PreferenceCategory 
+        android:key="gvisual_category"
+        android:title="@string/gvisual_title">
+
+        <PreferenceScreen
+            android:key="gvisual"
+            android:title="@string/gvisual_title"
+            android:summary="@string/gvisual_summary"
+            android:fragment="com.lessaosp.settings.fragments.GvisualSettings" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
