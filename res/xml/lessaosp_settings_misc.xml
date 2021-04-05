@@ -38,4 +38,11 @@
             android:summary="@string/wakelock_blocker_summary"
             android:fragment="com.lessaosp.settings.fragments.WakeLockBlocker" />
 
+    <Preference
+        android:key="gaming_category"
+        android:title="@string/gaming_title"
+        android:summary="@string/gaming_title_summary"
+        android:fragment="com.lessaosp.settings.fragments.GamingModeSettings" />
+
+
 </PreferenceScreen>
