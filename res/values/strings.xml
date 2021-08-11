@@ -33,6 +33,7 @@
     <string name="reset">Reset</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="default_string">Default</string>   
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
@@ -93,4 +94,12 @@
     <string name="qs_bg_use_new_tint">Tint QS tiles using accent color</string>
     <string name="qs_bg_use_new_tint_summary">Enable the accent color tint on the QS tiles</string>
 
+    <!-- Brightness slider styles -->
+    <string name="android_s_string" translatable="false">Android 12</string>
+    <string name="aosp_string" translatable="false">AOSP</string>
+    <string name="miui_string" translatable="false">MIUI</string>
+    <string name="oos_string" translatable="false">OxygenOS</string>
+
+    <!-- Radio info -->
+    <string name="radio_info_title">Radio info</string>
 </resources>

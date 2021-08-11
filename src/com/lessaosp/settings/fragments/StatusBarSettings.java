@@ -43,6 +43,9 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 import android.util.Log;
 
+import static android.os.UserHandle.USER_SYSTEM;
+import android.os.RemoteException;
+import android.content.Context;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -52,7 +55,8 @@ import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.UserHandle;
-import com.lessaosp.settings.preference.SystemSettingListPreference;
+import android.content.om.IOverlayManager;
+import com.lessaosp.settings.preferences.SystemSettingListPreference;
 
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
@@ -60,6 +64,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String SLIDER_STYLE = "slider_style";
     private Handler mHandler;
     private SystemSettingListPreference mSlider;
+    private IOverlayManager mOverlayService;
 
     @Override
     public void onCreate(Bundle icicle) {

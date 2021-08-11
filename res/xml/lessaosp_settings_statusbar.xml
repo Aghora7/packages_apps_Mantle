@@ -19,7 +19,7 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
         <!-- QS brightness slider styles -->
-        <com.lessaosp.settings.preference.SystemSettingListPreference
+        <com.lessaosp.settings.preferences.SystemSettingListPreference
             android:key="slider_style"
             android:title="@string/slider_styles_title"
             android:entries="@array/slider_styles_entries"

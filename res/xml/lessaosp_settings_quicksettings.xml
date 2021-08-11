@@ -22,7 +22,7 @@
         android:key="qs_columns_rows_category"
         android:title="@string/qs_columns_rows_category_title">
 
-        <com.lessaosp.settings.preference.CustomSeekBarPreference
+        <com.lessaosp.settings.preferences.CustomSeekBarPreference
             android:key="qs_rows_portrait"
             android:title="@string/qs_rows_portrait_title"
             android:max="5"
@@ -30,7 +30,7 @@
             android:defaultValue="3"
             settings:units="" />
 
-        <com.lessaosp.settings.preference.CustomSeekBarPreference
+        <com.lessaosp.settings.preferences.CustomSeekBarPreference
             android:key="qs_rows_landscape"
             android:title="@string/qs_rows_landscape_title"
             android:max="5"
@@ -38,7 +38,7 @@
             android:defaultValue="1"
             settings:units="" />
 
-        <com.lessaosp.settings.preference.CustomSeekBarPreference
+        <com.lessaosp.settings.preferences.CustomSeekBarPreference
             android:key="qs_columns_portrait"
             android:title="@string/qs_columns_portrait_title"
             android:max="7"
@@ -46,7 +46,7 @@
             android:defaultValue="4"
             settings:units="" />
 
-        <com.lessaosp.settings.preference.CustomSeekBarPreference
+        <com.lessaosp.settings.preferences.CustomSeekBarPreference
             android:key="qs_columns_landscape"
             android:title="@string/qs_columns_landscape_title"
             android:max="9"
@@ -55,7 +55,7 @@
             settings:units="" />
         </PreferenceCategory>
 
-        <com.lessaosp.settings.preference.SystemSettingSwitchPreference
+        <com.lessaosp.settings.preferences.SystemSettingSwitchPreference
             android:key="qs_panel_bg_use_new_tint"
             android:title="@string/qs_bg_use_new_tint"
             android:summary="@string/qs_bg_use_new_tint_summary"

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.lighthouse.settings.preferences;
+package com.lessaosp.settings.preferences;
 
 import android.content.Context;
 import android.text.TextUtils;
