@@ -48,9 +48,18 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.UserHandle;
+import com.lessaosp.settings.preference.SystemSettingListPreference;
 
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
+
+    private static final String SLIDER_STYLE = "slider_style";
+    private Handler mHandler;
+    private SystemSettingListPreference mSlider;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -59,12 +68,95 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.lessaosp_settings_statusbar);
 
         PreferenceScreen prefSet = getPreferenceScreen();
-
+        mSlider = (SystemSettingListPreference) findPreference(SLIDER_STYLE);
+        mCustomSettingsObserver.observe();
     }
+
+    private CustomSettingsObserver mCustomSettingsObserver = new CustomSettingsObserver(mHandler);
+    private class CustomSettingsObserver extends ContentObserver {
+
+        CustomSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            Context mContext = getContext();
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SLIDER_STYLE),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            if (uri.equals(Settings.System.getUriFor(Settings.System.SLIDER_STYLE))) {
+                updateSlider();
+            }
+        }
+    }
+
+    private void updateSlider() {
+        ContentResolver resolver = getActivity().getContentResolver();
+
+        boolean sliderDefault = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.SLIDER_STYLE , 0, UserHandle.USER_CURRENT) == 0;
+        boolean sliderOOS = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.SLIDER_STYLE , 0, UserHandle.USER_CURRENT) == 1;
+        boolean sliderAosp = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.SLIDER_STYLE , 0, UserHandle.USER_CURRENT) == 2;
+        boolean sliderRUI = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.SLIDER_STYLE , 0, UserHandle.USER_CURRENT) == 3;
+
+        if (sliderDefault) {
+            setDefaultSlider(mOverlayService);
+        } else if (sliderOOS) {
+            enableSlider(mOverlayService, "com.android.theme.systemui_slider_oos");
+        } else if (sliderAosp) {
+            enableSlider(mOverlayService, "com.android.theme.systemui_slider.aosp");
+        } else if (sliderRUI) {
+            enableSlider(mOverlayService, "com.android.theme.systemui_slider.rui");
+        }
+    }
+
+    public static void setDefaultSlider(IOverlayManager overlayManager) {
+        for (int i = 0; i < SLIDERS.length; i++) {
+            String sliders = SLIDERS[i];
+            try {
+                overlayManager.setEnabled(sliders, false, USER_SYSTEM);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void enableSlider(IOverlayManager overlayManager, String overlayName) {
+        try {
+            for (int i = 0; i < SLIDERS.length; i++) {
+                String sliders = SLIDERS[i];
+                try {
+                    overlayManager.setEnabled(sliders, false, USER_SYSTEM);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+            overlayManager.setEnabled(overlayName, true, USER_SYSTEM);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static final String[] SLIDERS = {
+        "com.android.theme.systemui_slider_oos",
+        "com.android.theme.systemui_slider.aosp",
+        "com.android.theme.systemui_slider.rui"
+    };
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-
+        if (preference == mSlider) {
+            mCustomSettingsObserver.observe();
+            return true;
+        }
         return false;
     }
 

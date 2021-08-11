@@ -75,4 +75,7 @@
     <string name="wakelock_blocker_warning_title">Proceed with caution</string>
     <string name="wakelock_blocker_warning">Blocking wakelocks have the potential to cause instability, crashes or data loss</string>
         
+    <!-- Brightness slider styles -->
+    <string name="slider_styles_title">Brightness slider style</string>
+    <string name="slider_rui">RUI</string>        
 </resources>
