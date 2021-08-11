@@ -106,6 +106,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                 Settings.System.SLIDER_STYLE , 0, UserHandle.USER_CURRENT) == 2;
         boolean sliderRUI = Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.SLIDER_STYLE , 0, UserHandle.USER_CURRENT) == 3;
+        boolean sliderA12 = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.SLIDER_STYLE , 0, UserHandle.USER_CURRENT) == 4;
 
         if (sliderDefault) {
             setDefaultSlider(mOverlayService);
@@ -115,6 +117,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             enableSlider(mOverlayService, "com.android.theme.systemui_slider.aosp");
         } else if (sliderRUI) {
             enableSlider(mOverlayService, "com.android.theme.systemui_slider.rui");
+        } else if (sliderA12) {
+            enableSlider(mOverlayService, "com.android.theme.systemui_slider.a12");
         }
     }
 
@@ -148,7 +152,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     public static final String[] SLIDERS = {
         "com.android.theme.systemui_slider_oos",
         "com.android.theme.systemui_slider.aosp",
-        "com.android.theme.systemui_slider.rui"
+        "com.android.theme.systemui_slider.rui",
+        "com.android.theme.systemui_slider.a12"
     };
 
     @Override
