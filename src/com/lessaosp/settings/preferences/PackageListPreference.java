@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lessaosp.settings.preference;
+package com.lessaosp.settings.preferences;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
