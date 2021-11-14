@@ -18,4 +18,10 @@
     android:title="@string/quicksettings_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+     <com.lessaosp.settings.preference.SecureSettingSwitchPreference
+          android:key="hide_qs_call_strength"
+          android:title="@string/show_qs_call_strength_icon_title"
+          android:summary="@string/show_qs_call_strength_icon_summary"
+          android:defaultValue="true" />
+
 </PreferenceScreen>
