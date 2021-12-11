@@ -31,10 +31,14 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.SwitchPreference;
 import android.provider.Settings;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.settings.R;
 
 public class NavigationSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
@@ -54,6 +58,9 @@ public class NavigationSettings extends SettingsPreferenceFragment implements On
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.LESS_SETTINGS;
+        return MetricsEvent.LESS_SETTINGS;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.lessaosp_settings_navigation);
 }

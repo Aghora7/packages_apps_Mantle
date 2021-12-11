@@ -17,7 +17,7 @@
 
 package com.lessaosp.settings;
 
-import com.android.internal.logging.nano.MetricsProto;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,10 +27,12 @@ import android.os.Bundle;
 import android.view.Surface;
 import androidx.preference.Preference;
 import com.android.settings.R;
-import com.lessaosp.settings.preferences.Utils;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
 
 import com.android.settings.SettingsPreferenceFragment;
 
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class LessaospSettings extends SettingsPreferenceFragment {
 
     @Override
@@ -38,54 +40,13 @@ public class LessaospSettings extends SettingsPreferenceFragment {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.lessaosp_settings);
 
-        final String KEY_DEVICE_PART = "device_part";
-        boolean packageInstalled = false;
-
-        // DeviceParts
-        String[] targetPackage = getResources().getStringArray(R.array.targetPackage);
-        String[] targetClass = getResources().getStringArray(R.array.targetClass);
-        Intent intentPref = getPreferenceScreen().findPreference(KEY_DEVICE_PART).getIntent();
-        for (int i=0; i < targetPackage.length; i++)
-        {
-            if (Utils.isPackageInstalled(getActivity(), targetPackage[i])) {
-                packageInstalled = true;
-                intentPref.setClassName(targetPackage[i], targetClass[i]);
-            }
-        }
-        if (!packageInstalled) getPreferenceScreen().removePreference(findPreference(KEY_DEVICE_PART));
     }
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.LESS_SETTINGS;
+        return MetricsEvent.LESS_SETTINGS;
     }
 
-    public static void lockCurrentOrientation(Activity activity) {
-        int currentRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
-        int orientation = activity.getResources().getConfiguration().orientation;
-        int frozenRotation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-        switch (currentRotation) {
-            case Surface.ROTATION_0:
-                frozenRotation = orientation == Configuration.ORIENTATION_LANDSCAPE
-                        ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                        : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-                break;
-            case Surface.ROTATION_90:
-                frozenRotation = orientation == Configuration.ORIENTATION_PORTRAIT
-                        ? ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
-                        : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-                break;
-            case Surface.ROTATION_180:
-                frozenRotation = orientation == Configuration.ORIENTATION_LANDSCAPE
-                        ? ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
-                        : ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT;
-                break;
-            case Surface.ROTATION_270:
-                frozenRotation = orientation == Configuration.ORIENTATION_PORTRAIT
-                        ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                        : ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE;
-                break;
-        }
-        activity.setRequestedOrientation(frozenRotation);
-    }
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.lessaosp_settings);
 }

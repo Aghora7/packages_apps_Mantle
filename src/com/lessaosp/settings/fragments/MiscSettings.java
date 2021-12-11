@@ -17,6 +17,7 @@
 package com.lessaosp.settings.fragments;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,6 +38,9 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.SwitchPreference;
 import android.provider.Settings;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -62,6 +66,9 @@ public class MiscSettings extends SettingsPreferenceFragment implements
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.LESS_SETTINGS;
+        return MetricsEvent.LESS_SETTINGS;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.lessaosp_settings_misc);
 }

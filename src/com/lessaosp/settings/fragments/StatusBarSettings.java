@@ -17,6 +17,7 @@
 package com.lessaosp.settings.fragments;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -34,6 +35,8 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.SwitchPreference;
 import android.provider.Settings;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
 
 import java.util.Locale;
 import android.text.TextUtils;
@@ -58,8 +61,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.lessaosp_settings_statusbar);
 
-        PreferenceScreen prefSet = getPreferenceScreen();
-
     }
 
     @Override
@@ -70,7 +71,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.LESS_SETTINGS;
+        return MetricsEvent.LESS_SETTINGS;
     }
 
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.lessaosp_settings_statusbar);
 }
