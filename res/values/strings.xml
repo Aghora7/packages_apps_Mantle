@@ -20,6 +20,8 @@
     <string name="lockscreen_title">Lock screen</string>
     <string name="misc_title">Miscellaneous</string>
     <string name="navbar_title">Navigation bar</string>
+    <string name="navigation_title">Navigation</string>
+    <string name="general_title">General</string>
     <string name="powermenu_title">Power menu</string>
     <string name="quicksettings_title">Quick Settings</string>
     <string name="recents_title">Recents apps</string>
@@ -180,5 +182,15 @@
     <string name="navigation_bar_arrow_keys_title">Show arrow keys while typing</string>
     <string name="navigation_bar_arrow_keys_summary">Display left and right cursor buttons in navigation bar while typing</string>
 
+    <!-- Notification guts kill app button -->
+    <string name="notification_guts_kill_app_button_title">Kill app button</string>
+    <string name="notification_guts_kill_app_button_summary">Show a kill app button in the notification\'s long press menu</string>
 
+    <!-- Extra's -->
+    <string name="light_settings_header">Light settings</string>
+    <string name="battery_light_settings">Battery light</string>
+    <string name="battery_light_summary">Enable or disable battery light while on DND, low battery</string>
+
+    <!-- Notification light -->
+    <string name="notification_light_settings">Notification light</string>
 </resources>
